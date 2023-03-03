@@ -1,0 +1,9 @@
+@font-face {
+    font-family: karla;
+    src: url(../font/Karla-Regular.ttf) format(truetype);
+}
+
+@font-face {
+    font-family: fira;
+    src: url(../font/FiraSans-Regular.ttf) format(truetype);
+}

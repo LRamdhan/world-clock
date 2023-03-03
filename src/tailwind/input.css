@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer components {
+    .main-country {
+        @apply flex items-center space-x-2.5 bg-back px-2 py-2 rounded-md m-2 sm:m-3;
+    }
+
+    .country {
+        @apply px-3 py-2 hover:bg-back;
+    }
+    
+    .country-regular {
+        @apply text-sm sm:text-xl;
+    }
+
+    .country-large-bold {
+        @apply font-bold text-2xl sm:text-3xl;
+    }
+
+    .country-large {
+        @apply text-2xl sm:text-3xl;
+    }
+
+    .country-bold {
+        @apply font-bold text-sm sm:text-xl;
+    }
+}
