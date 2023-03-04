@@ -2,13 +2,25 @@
 @tailwind utilities;
 @tailwind components;
 
+@layer base {
+    html {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}
+
 @layer components {
     .main-country {
-        @apply flex items-center space-x-2.5 bg-back px-2 py-2 rounded-md m-2 sm:m-3;
+        @apply flex items-center space-x-2.5 bg-back-light dark:bg-back px-2 py-2 rounded-md m-2 sm:m-3;
     }
 
     .country {
-        @apply px-3 py-2 hover:bg-back;
+        @apply px-3 py-2 hover:bg-back-light dark:hover:bg-back;
     }
     
     .country-regular {
