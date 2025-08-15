@@ -22,9 +22,9 @@ const Container = () => {
             "zone": "Africa/Dar_es_Salaam"
         },
         {
-            "country_code": "UM",
-            "country_name": "United States Minor Outlying Islands",
-            "zone": "Pacific/Midway"
+            "country_code": "AT",
+            "country_name": "Austria",
+            "zone": "Europe/Vienna"
         },
         {
             "country_code": "US",
@@ -59,7 +59,7 @@ const Container = () => {
     const requestBar = async () => {
         const times = [];
         for(let country of mainCountry) {
-            await fetch(`http://192.168.43.150:80/latihan/world%20clock/public/time/?key=${country.zone}`)
+            await fetch(`/time/?key=${country.zone}`)
                 .then(async res => {
                     const detail = await res.json();
                     let hour = detail.hour === 24 ? 0 : detail.hour > 12 ? detail.hour - 12 : detail.hour;
@@ -76,7 +76,7 @@ const Container = () => {
     };
 
     const requestOne = (zone, code) => {
-        fetch(`http://192.168.43.150:80/latihan/world%20clock/public/time/?key=${zone}`)
+        fetch(`/time/?key=${zone}`)
             .then(async res => {
                 const detail = await res.json();
                 const main = [...mainTime];
@@ -141,7 +141,7 @@ const Container = () => {
 
     const request = index => {
         setRunning(false);
-        fetch(`http://192.168.43.150:80/latihan/world%20clock/public/time/?key=${mainCountry[index].zone}`)
+        fetch(`/time/?key=${mainCountry[index].zone}`)
             .then(response => response.json()
                 .then(response => {
                     let city = mainCountry[index].zone.split('/');
@@ -180,7 +180,7 @@ const Container = () => {
     const search = async event => {
         event.preventDefault();
         if(input.length === 0) return;
-        const country = await fetch(`http://192.168.43.150:80/latihan/world%20clock/public/timezone/?key=${input}`)
+        const country = await fetch(`/timezone/?key=${input}`)
             .then(async response => await response.json()
                 .then(response => response)
                 .catch(response => console.log(`error : ${response}`)))
@@ -259,7 +259,7 @@ const Container = () => {
                 <div className="flex flex-wrap justify-center">
                     {mainTime.map((el, ind) => {
                         return <div className="main-country text-primary cursor-pointer active:scale-90 md:hover:-translate-y-[20%] transition-all duration-200" key={ind} onClick={() => request(ind)}>
-                            <img className="h-5 sm:h-6" crossOrigin="anonymous" src={`https://countryflagsapi.com/svg/${el.code}`} alt={el.code} />
+                            <img className="h-5 sm:h-6" src={`https://www.countryflagicons.com/FLAT/64/${el.code}.png`} alt={el.code} />
                             <span className="font-bold sm:text-lg">{el.time}</span>
                         </div>
                     })}
