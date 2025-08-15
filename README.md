@@ -1,1 +1,5 @@
-World Clock built with react
+# World Clock
+
+<br/>
+
+Built with ReactJS and PHP
