@@ -1,3 +1,5 @@
+import { memo } from "react"
+
 const SearchInput = () => {
   const handleKeyUp = (e) => {
     // search
@@ -20,4 +22,4 @@ const SearchInput = () => {
   )
 }
 
-export default SearchInput
+export default memo(SearchInput)

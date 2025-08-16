@@ -1,3 +1,5 @@
+import { memo } from "react"
+
 const MoreCountryButton = () => {
   const handleClick = () => {
     // scroll
@@ -13,4 +15,4 @@ const MoreCountryButton = () => {
   )
 }
 
-export default MoreCountryButton
+export default memo(MoreCountryButton)

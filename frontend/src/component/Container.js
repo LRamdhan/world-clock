@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Head from './Head';
-import MainTime from './MainTime';
-import SecondaryTime from './SecondaryTime';
+import TimeMain from './TimeMain';
+import TimeSecondary from './TimeSecondary';
 import MoreCountryButton from './MoreCountryButton';
 import SearchInput from './SearchInput';
 import SearchResult from './SearchResult';
+import { useMainContext } from '../context/mainContext';
 
 const Container = () => {
     // const [mainCountry, setMainCountry] = React.useState([
@@ -229,10 +230,6 @@ const Container = () => {
     //     setInput(event.target.value);
     // };
 
-    // const switchMode = () => {
-    //     container.current.classList.toggle('dark');
-    // };
-
     // const scroll = () => {
     //     searching.current.scrollIntoView({
     //         behavior: "smooth",
@@ -242,38 +239,45 @@ const Container = () => {
     //     inputField.current.focus({preventScroll: true});
     // };
 
+
+    const {mode} = useMainContext();
+
     return (
-        <div><div className="bg-light dark:bg-dark bg-cover bg-center font-karla">
+        <main className={`${mode}`}>
 
-        <div className="w-full h-screen flex flex-col items-center justify-between text-primary-dark dark:text-primary py-7 px-4 sm:py-10 sm:px-16">
+            <div className={`bg-light dark:bg-dark bg-cover bg-center font-karla`}>
 
-            <Head />
+                <div className="w-full h-screen flex flex-col items-center justify-between text-primary-dark dark:text-primary py-7 px-4 sm:py-10 sm:px-16">
 
-            <div className="w-full space-y-7">
-                <MainTime />
-                
-                <SecondaryTime />
+                    <Head />
+
+                    <div className="w-full space-y-7">
+                        <TimeMain />
+                        
+                        <TimeSecondary />
+                    </div>
+
+                    <MoreCountryButton />
+
+                </div>
+
+                <div className="min-h-[100vh] text-center text-primary-light dark:text-primary flex flex-col justify-between">
+
+                    <div className="pt-16 space-y-10">
+
+                        <SearchInput />
+
+                        <SearchResult />
+
+                    </div>
+
+                    <footer className="capitalize text-xs py-6 sm:text-sm">&copy; 2023 luji ramdhan</footer>
+                </div>
+
             </div>
 
-            <MoreCountryButton />
-
-        </div>
-
-        <div className="min-h-[100vh] text-center text-primary-light dark:text-primary flex flex-col justify-between">
-
-            <div className="pt-16 space-y-10">
-
-                <SearchInput />
-
-                <SearchResult />
-
-            </div>
-
-            <footer className="capitalize text-xs py-6 sm:text-sm">&copy; 2023 luji ramdhan</footer>
-        </div>
-
-        </div></div>
+        </main>
     );
 };
 
-export default Container;
+export default memo(Container);

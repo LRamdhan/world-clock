@@ -1,3 +1,5 @@
+import { memo } from "react"
+
 const SearchResult = () => {
 
   return (
@@ -13,4 +15,4 @@ const SearchResult = () => {
   )
 }
 
-export default SearchResult
+export default memo(SearchResult)
