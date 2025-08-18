@@ -1,8 +1,17 @@
 import { memo } from "react"
+import { useMainContext } from "../context/mainContext"
 
 const MoreCountryButton = () => {
+  const {inputElement} = useMainContext()
+
   const handleClick = () => {
-    // scroll
+    const inputFieldElement = inputElement.current.children[0].children[0]
+    inputElement.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "start"
+    });
+    inputFieldElement.focus({preventScroll: true});
   }
 
   return (

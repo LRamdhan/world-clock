@@ -3,20 +3,22 @@ import React, { createContext, useContext, useState } from 'react';
 const initialMainTime = {
   city: 'Jakarta',
   country: 'Indonesia',
-  hour: 11,
-  minute: 59,
-  second: 50,
+  hour: 0,
+  minute: 0,
+  second: 0,
   ampm: 'AM',
-  date: '20 Februari 2023',
+  date: '20 March 2023',
+  code: 'ID',
+  timezone: 'Asia/Jakarta'
 };
 
 const initialIsLoadingMainTime = false
 
 const initialSecondaryTime = [
-  { code: 'ID', time: '08:32' },
-  { code: 'SG', time: '82:82' },
-  { code: 'MY', time: '23:23' },
-  { code: 'TH', time: '23:74' },
+  { code: 'VN', timezone: 'Asia/Ho_Chi_Minh', country: 'Vietnam', hour: 8, minute: 40, second: 20 },
+  { code: 'SG', timezone: "Asia/Singapore", country: 'Singapore', hour: 8, minute: 40, second: 20 },
+  { code: 'MY', timezone: "Asia/Kuala_Lumpur", country: 'Malaysia', hour: 8, minute: 40, second: 20 },
+  { code: 'TH', timezone: "Asia/Bangkok", country: 'Thailand', hour: 8, minute: 40, second: 20 },
 ]
 
 const initialMode = ''
@@ -28,9 +30,13 @@ export const MainProvider = ({ children }) => {
   const [isLoadingMainTime, setIsLoadingMainTime] = useState(initialIsLoadingMainTime);
   const [secondaryTime, setSecondaryTime] = useState(initialSecondaryTime);
   const [mode, setMode] = useState(initialMode);
+  const [inputElement, setInputElement] = useState(null);
+  const [mainTimeElement, setMainTimeElement] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [isPendingSecondary, setIsPendingSecondary] = useState(true);
 
   return (
-    <MainContext.Provider value={{ mainTime, setMainTime, isLoadingMainTime, setIsLoadingMainTime, secondaryTime, setSecondaryTime, mode, setMode }}>
+    <MainContext.Provider value={{ mainTime, setMainTime, isLoadingMainTime, setIsLoadingMainTime, secondaryTime, setSecondaryTime, mode, setMode, inputElement, setInputElement, mainTimeElement, setMainTimeElement, isPending, setIsPending, isPendingSecondary, setIsPendingSecondary }}>
       {children}
     </MainContext.Provider>
   );

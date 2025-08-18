@@ -1,24 +1,35 @@
 import { memo } from "react"
+import timezoneApi from "../api/timezoneApi"
+import { useCountryResultContext } from "../context/countryResultContext"
 
 const SearchInput = () => {
-  const handleKeyUp = (e) => {
-    // search
+  const { setCountryResult, keyword, setKeyword } = useCountryResultContext()
+
+  const searchCountry = async (keyword) => {
+    try {
+      const result = await timezoneApi.getTimezoneByCountry(keyword);
+      setCountryResult(result);
+    } catch(err) {
+      alert('There is an error')
+    }
   }
 
   const handleInput = e => {
-    // setInputValue
+    setKeyword(e.target.value);
+    searchCountry(e.target.value);
   }
 
-  const handleSubmit = e=> {
+  const handleSubmit = e => {
     e.preventDefault()
-    // search
+    searchCountry(keyword)
   }
 
   return (
     <form action="" onSubmit={handleSubmit}>
-      <input className="bg-transparent outline-none text-primary-light dark:text-primary placeholder:text-back-light dark:placeholder:text-primary text-center border-b-[3px] border-back dark:border-back-light pb-2 w-64" placeholder="Search Country" type="text" onInput={handleInput} onKeyUp={handleKeyUp} />
+      <div className="flex justify-center pb-2 px-3 mx-auto max-w-[320px] border-b-[3px] border-back dark:border-back-light">
+        <input className="w-full text-center bg-transparent outline-none text-primary-light dark:text-primary placeholder:text-back-light dark:placeholder:text-primary" placeholder="Search Country" type="text" value={keyword} onInput={handleInput} />
+      </div>
     </form>
-
   )
 }
 

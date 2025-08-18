@@ -4,6 +4,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Content-Type: application/json");
 
 $timeZoneConnect = mysqli_connect("localhost", "root", "", "world_clock");
 $response = new StdClass();
@@ -26,5 +27,3 @@ $response->data = $timeZones;
 $response = json_encode($response);
 
 print($response);
-
-?>
