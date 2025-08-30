@@ -7,6 +7,10 @@ const SearchInput = () => {
 
   const searchCountry = async (keyword) => {
     try {
+      // just to handle infinityfree database limittation
+      keyword = keyword.trim()
+      if(keyword.length <= 1) return
+
       const result = await timezoneApi.getTimezoneByCountry(keyword);
       setCountryResult(result);
     } catch(err) {

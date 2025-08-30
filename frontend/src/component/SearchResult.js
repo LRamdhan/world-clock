@@ -18,7 +18,7 @@ const SearchResult = () => {
       <span className="hidden country country-large-bold"></span>
       <span className="hidden country country-large"></span>
       <span className="hidden country country-bold"></span>
-        {countryResult.map((el, ind) => 
+        {countryResult?.map((el, ind) => 
           <span className={`country country-regular cursor-pointer`} key={ind} onClick={handleChooseCountry(el.zone, el.country_name, el.country_code)}>{el.country_name}</span>
         )}
     </div>
