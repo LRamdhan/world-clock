@@ -1,6 +1,6 @@
 import poolPg from "./config/postgreConfig.js";
 import express from "express";
-import cityRoutes from "./routes/cityRoutes.js";
+import timezoneRoutes from "./routes/timezoneRoutes.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import loggerMiddleware from "./middleware/loggerMiddleware.js";
 import corscacheMiddleware from "./middleware/corscacheMiddleware.js";
@@ -14,7 +14,7 @@ app.use(loggerMiddleware)
 app.use(corscacheMiddleware)
 
 // routes
-app.use("/api/city", cityRoutes)
+app.use("/api", timezoneRoutes)
 
 // error middlware
 app.use(errorMiddleware)

@@ -1,3 +1,2 @@
 # World Clock
-
-<br/>
+by Luji Ramdhan
